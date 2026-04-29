@@ -91,7 +91,7 @@ program
     config.set('code_verifier', codeVerifier);
 
     const server = http.createServer(async (req, res) => { // Added 'async'
-      const url = new URL(req.url, 'http://localhost:3000');
+      const url = new URL(req.url, 'https://insighta-backend.vercel.app');
       
       // IMPORTANT: PKCE looks for 'code', not 'access_token' in the URL
       const code = url.searchParams.get('code');
