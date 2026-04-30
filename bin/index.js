@@ -6,7 +6,7 @@ const Conf = require('conf').default;
 const open = require('open');
 const program = new Command();
 const config = new Conf({ projectName: 'insighta' });
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = process.env.BACKEND_URL || 'https://user-profiler-api.vercel.app';
 
 const apiClient = axios.create({ baseURL: BACKEND_URL });
 
@@ -91,7 +91,7 @@ program
     config.set('code_verifier', codeVerifier);
 
     const server = http.createServer(async (req, res) => { // Added 'async'
-      const url = new URL(req.url, 'https://insighta-backend.vercel.app');
+      const url = new URL(req.url, 'https://user-profiler-api.vercel.app');
       
       // IMPORTANT: PKCE looks for 'code', not 'access_token' in the URL
       const code = url.searchParams.get('code');
